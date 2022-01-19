@@ -60,3 +60,8 @@ jobs:
                   VALIDATE_MARKDOWN: true
                   VALIDATE_XML: true
                   VALIDATE_YAML: true
+                  FILTER_REGEX_EXCLUDE: .*.git/.*
+                  FILTER_REGEX_EXCLUDE: .*.import/.*
+                  FILTER_REGEX_EXCLUDE: .*.mono/.*
+                  FILTER_REGEX_EXCLUDE: .*.vscode/.*
+                  IGNORE_GENERATED_FILES: true
