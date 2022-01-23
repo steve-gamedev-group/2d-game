@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
 
@@ -10,6 +10,12 @@ bounce = 0.5
 radius = 20.0
 
 [sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0, 1, 1, 1, 0, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -31,6 +37,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
+texture = SubResource( 5 )
 
 [node name="Bottom circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
 position = Vector2( 0, 10 )

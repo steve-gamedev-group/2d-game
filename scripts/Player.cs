@@ -73,6 +73,8 @@ public class Player : RigidBody2D
 			}
 		}
 
+		Rotation = (GetGlobalMousePosition() - Position).Angle() + Mathf.Pi / 2;
+
 		GetNode<Label>("/root/Node2D/UI/Debug info").Text = $"Position: {Position}\nVelocity: {LinearVelocity}\nState: {state}";
 	}
 }
