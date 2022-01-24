@@ -3,14 +3,25 @@ using Godot;
 
 public class Player : RigidBody2D
 {
+	[Export] public float acceleration = 0.5f;
+	[Export] public float maxVelocity = 500f;
+
 	public Camera2D camera;
 
-	private string state = "Stopped";
-	public float maxVelocity = 50f;
+	private Vector2 direction = Vector2.Zero;
+	private string state = "stopped";
 
 	public override void _Ready()
 	{
 		camera = GetNode<Camera2D>("../Camera2D");
+	}
+
+	public override void _Process(float delta)
+	{
+		if (Input.IsActionJustReleased("restart"))
+		{
+			GetTree().ReloadCurrentScene();
+		}
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -21,15 +32,15 @@ public class Player : RigidBody2D
 			// Up
 			if (Input.IsActionPressed("move_up"))
 			{
-				state = "Moving forward";
-				LinearVelocity += -Transform.y * 1f;
+				LinearVelocity += direction * acceleration;
+				state = "moving forward";
 			}
 
 			// Down
 			if (Input.IsActionPressed("move_down"))
 			{
-				state = "Moving backwards";
-				LinearVelocity += Transform.y * 1f;
+				LinearVelocity += -direction * acceleration;
+				state = "moving backwards";
 			}
 		}
 		else
@@ -50,15 +61,15 @@ public class Player : RigidBody2D
 			// Right
 			if (Input.IsActionPressed("move_right"))
 			{
-				state = "Moving right";
-				LinearVelocity += Transform.x * 1f;
+				LinearVelocity += direction.Rotated(90 / (Mathf.Pi * 2)) * acceleration;
+				state = "moving right";
 			}
 
 			// Left
 			if (Input.IsActionPressed("move_left"))
 			{
-				state = "Moving left";
-				LinearVelocity += -Transform.x * 1f;
+				LinearVelocity += -direction.Rotated(90 / (Mathf.Pi * 2)) * acceleration;
+				state = "moving left";
 			}
 		}
 		else
@@ -73,7 +84,9 @@ public class Player : RigidBody2D
 			}
 		}
 
-		Rotation = (GetGlobalMousePosition() - Position).Angle() + Mathf.Pi / 2;
+		Rotation = (GetGlobalMousePosition() - Position).Angle();
+		direction = GetGlobalMousePosition() - Position;
+		LinearVelocity = LinearVelocity.Clamped(maxVelocity);
 
 		GetNode<Label>("/root/Node2D/UI/Debug info").Text = $"Position: {Position}\nVelocity: {LinearVelocity}\nState: {state}";
 	}
