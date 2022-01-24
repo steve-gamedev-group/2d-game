@@ -1,10 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
-
-[sub_resource type="PhysicsMaterial" id=3]
-friction = 0.0
-bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -22,25 +18,21 @@ gradient = SubResource( 4 )
 [node name="Player" type="Node" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Player"]
-physics_material_override = SubResource( 3 )
 gravity_scale = 0.0
-continuous_cd = 2
-can_sleep = false
-linear_damp = 0.0
-angular_damp = 0.0
 script = ExtResource( 1 )
+acceleration = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RigidBody2D"]
 shape = SubResource( 1 )
 
-[node name="Right circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
-position = Vector2( 10, 0 )
+[node name="Top circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
+position = Vector2( 0, -10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
 texture = SubResource( 5 )
 
-[node name="Left circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
-position = Vector2( -10, 0 )
+[node name="Bottom circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
+position = Vector2( 0, 10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
 
@@ -61,7 +53,9 @@ anchor_left = 0.02
 anchor_top = 0.03
 anchor_right = 0.2
 anchor_bottom = 0.11
-text = "Position: 
+text = "Delta time: 
+
+Position: 
 Velocity: 
 State: "
 valign = 1

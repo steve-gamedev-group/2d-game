@@ -4,7 +4,12 @@ using Godot;
 public class Player : RigidBody2D
 {
 	[Export] public float acceleration = 0.5f;
+	[Export] public float deceleration = 2f;
 	[Export] public float maxVelocity = 500f;
+	[Export] public float zeroVelocityRange = 50f;
+
+	private Vector2 _thrust = new Vector2(0, -250);
+	private float _torque = 2500;
 
 	public Camera2D camera;
 
@@ -24,70 +29,28 @@ public class Player : RigidBody2D
 		}
 	}
 
+	public override void _IntegrateForces(Physics2DDirectBodyState state)
+	{
+		if (Input.IsActionPressed("move_forward"))
+			AppliedForce = _thrust.Rotated(Rotation);
+		else
+			AppliedForce = new Vector2();
+
+		var rotationDir = 0;
+		if (Input.IsActionPressed("move_right"))
+			rotationDir += 1;
+		if (Input.IsActionPressed("move_left"))
+			rotationDir -= 1;
+		AppliedTorque = rotationDir * _torque;
+
+		// TODO: get mouse rotation working without borking the physics
+		// AngularVelocity = (GetGlobalMousePosition() - Position).Angle() + (90 * Mathf.Pi / 180);
+		Transform2D xform = state.Transform.Rotated((GetGlobalMousePosition() - Position).Angle());
+		state.Transform = xform;
+	}
+
 	public override void _PhysicsProcess(float delta)
 	{
-		// Up and down
-		if (Input.IsActionPressed("move_up") || Input.IsActionPressed("move_down"))
-		{
-			// Up
-			if (Input.IsActionPressed("move_up"))
-			{
-				LinearVelocity += direction * acceleration;
-				state = "moving forward";
-			}
-
-			// Down
-			if (Input.IsActionPressed("move_down"))
-			{
-				LinearVelocity += -direction * acceleration;
-				state = "moving backwards";
-			}
-		}
-		else
-		{
-			// Slow down
-			LinearVelocity += new Vector2(0f, -LinearVelocity.y * delta);
-
-			// Stop
-			if (LinearVelocity.Abs().y <= 5f)
-			{
-				LinearVelocity = new Vector2(LinearVelocity.x, 0f);
-			}
-		}
-
-		// Right and left
-		if (Input.IsActionPressed("move_right") || Input.IsActionPressed("move_left"))
-		{
-			// Right
-			if (Input.IsActionPressed("move_right"))
-			{
-				LinearVelocity += direction.Rotated(90 / (Mathf.Pi * 2)) * acceleration;
-				state = "moving right";
-			}
-
-			// Left
-			if (Input.IsActionPressed("move_left"))
-			{
-				LinearVelocity += -direction.Rotated(90 / (Mathf.Pi * 2)) * acceleration;
-				state = "moving left";
-			}
-		}
-		else
-		{
-			// Slow down
-			LinearVelocity += new Vector2(0f, -LinearVelocity.x * delta);
-
-			// Stop
-			if (LinearVelocity.Abs().x <= 5f)
-			{
-				LinearVelocity = new Vector2(0f, LinearVelocity.y);
-			}
-		}
-
-		Rotation = (GetGlobalMousePosition() - Position).Angle();
-		direction = GetGlobalMousePosition() - Position;
-		LinearVelocity = LinearVelocity.Clamped(maxVelocity);
-
-		GetNode<Label>("/root/Node2D/UI/Debug info").Text = $"Position: {Position}\nVelocity: {LinearVelocity}\nState: {state}";
+		GetNode<Label>("/root/Node2D/UI/Debug info").Text = $"Delta time: {delta}\n\nPosition: {Position}\nVelocity: {LinearVelocity}\nState: {state}";
 	}
 }
