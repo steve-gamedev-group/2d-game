@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.0
+
+[sub_resource type="SphereMesh" id=2]
+radius = 5.0
+height = 10.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2( 0, -15 )
+gravity_scale = 0.0
+continuous_cd = 1
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource( 2 )

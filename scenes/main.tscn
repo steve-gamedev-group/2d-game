@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
+[ext_resource path="res://scripts/LaserWeapon.cs" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -35,6 +36,11 @@ texture = SubResource( 5 )
 position = Vector2( 0, 10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
+
+[node name="Laser weapon" type="Node2D" parent="Player/RigidBody2D"]
+position = Vector2( 0, -25 )
+script = ExtResource( 2 )
+bulletSpeed = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
