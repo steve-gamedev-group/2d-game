@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 5.0
+radius = 2.5
 
 [sub_resource type="SphereMesh" id=2]
-radius = 5.0
-height = 10.0
+radius = 2.5
+height = 5.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
 position = Vector2( 0, -15 )

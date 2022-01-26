@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://scripts/LaserWeapon.cs" type="Script" id=2]
+[ext_resource path="res://resources/sprites/Player.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -27,18 +28,40 @@ acceleration = 0.25
 shape = SubResource( 1 )
 
 [node name="Top circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
+visible = false
 position = Vector2( 0, -10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
 texture = SubResource( 5 )
 
 [node name="Bottom circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
+visible = false
 position = Vector2( 0, 10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
 
-[node name="Laser weapon" type="Node2D" parent="Player/RigidBody2D"]
-position = Vector2( 0, -25 )
+[node name="Sprite" type="Sprite" parent="Player/RigidBody2D"]
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Laser weapon 1" type="Node2D" parent="Player/RigidBody2D"]
+position = Vector2( -17.35, -25 )
+script = ExtResource( 2 )
+bulletSpeed = 200.0
+
+[node name="Laser weapon 2" type="Node2D" parent="Player/RigidBody2D"]
+position = Vector2( -9.25, -32 )
+script = ExtResource( 2 )
+bulletSpeed = 200.0
+
+[node name="Laser weapon 3" type="Node2D" parent="Player/RigidBody2D"]
+position = Vector2( 9.25, -32 )
+script = ExtResource( 2 )
+bulletSpeed = 200.0
+
+[node name="Laser weapon 4" type="Node2D" parent="Player/RigidBody2D"]
+position = Vector2( 17.35, -25 )
 script = ExtResource( 2 )
 bulletSpeed = 200.0
 
@@ -46,10 +69,10 @@ bulletSpeed = 200.0
 current = true
 
 [node name="UI" type="Control" parent="."]
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+margin_left = -513.0
+margin_top = -301.0
+margin_right = 511.0
+margin_bottom = 299.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

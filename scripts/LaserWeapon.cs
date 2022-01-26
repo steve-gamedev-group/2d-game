@@ -8,20 +8,17 @@ public class LaserWeapon : Node2D
 	[Export] public float bulletSpeed = 1f;
 	[Export] public string bulletResourcePath = "res://prefabs/laser_bullet.tscn";
 
-	private float lastShotTime = 0f;
-
-	public override void _Ready()
-	{
-		lastShotTime = OS.GetTicksMsec() / 1000;
-	}
+	private float timeUntilNextShot = 0;
 
 	public override void _Process(float delta)
 	{
-		if (Input.IsActionPressed("shoot") && OS.GetTicksMsec() / 1000 - lastShotTime >= shootSpeed)
+		if (Input.IsActionPressed("shoot") && timeUntilNextShot <= 0)
 		{
 			Shoot();
-			lastShotTime = OS.GetTicksMsec() / 1000;
+			timeUntilNextShot = shootSpeed;
 		}
+
+		timeUntilNextShot -= delta;
 
 		// GD.Print($"lastShotTime: {lastShotTime} ----- OS.GetTicksMsec() / 1000 - lastShotTime: {OS.GetTicksMsec() / 1000 - lastShotTime}");
 	}
