@@ -5,8 +5,8 @@ public class Player : RigidBody2D
 {
 	[Export] public float acceleration = 0.5f;
 	[Export] public float deceleration = 2f;
-	[Export] public float maxVelocity = 500f;
-	[Export] public float zeroVelocityRange = 50f;
+	[Export] public float maxVelocity = 250f;
+	[Export] public float zeroVelocityRange = 10f;
 
 	private Vector2 _thrust = new Vector2(0, -250);
 	private float _torque = 2500;
@@ -31,6 +31,8 @@ public class Player : RigidBody2D
 
 	public override void _IntegrateForces(Physics2DDirectBodyState state)
 	{
+		Rotation = (GetGlobalMousePosition() - Position).Angle() + (90 * Mathf.Pi / 180);
+
 		if (Input.IsActionPressed("move_forward"))
 		{
 			AppliedForce = _thrust.Rotated(Rotation);
@@ -40,6 +42,15 @@ public class Player : RigidBody2D
 		{
 			AppliedForce = new Vector2();
 			playerState = "slowing down";
+
+			if (LinearVelocity.Abs().x <= zeroVelocityRange)
+			{
+				LinearVelocity = new Vector2(0, LinearVelocity.y);
+			}
+			if (LinearVelocity.Abs().y <= zeroVelocityRange)
+			{
+				LinearVelocity = new Vector2(LinearVelocity.x, 0);
+			}
 		}
 
 		var rotationDir = 0;
@@ -49,12 +60,7 @@ public class Player : RigidBody2D
 			rotationDir -= 1;
 		AppliedTorque = rotationDir * _torque;
 
-		// TODO: get mouse rotation working without borking the physics
-		// AngularVelocity = (GetGlobalMousePosition() - Position).Angle() + (90 * Mathf.Pi / 180);
-		// Transform2D xform = state.Transform.Rotated((GetGlobalMousePosition() - Position).Angle());
-		// state.Transform = xform;
-
-		// TODO: max velocity
+		LinearVelocity = LinearVelocity.Clamped(maxVelocity);
 	}
 
 	public override void _PhysicsProcess(float delta)
