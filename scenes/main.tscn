@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://scripts/LaserWeapon.cs" type="Script" id=2]
 [ext_resource path="res://resources/sprites/Player.png" type="Texture" id=3]
+[ext_resource path="res://prefabs/enemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -43,6 +44,7 @@ __meta__ = {
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Player"]
 gravity_scale = 0.0
+can_sleep = false
 script = ExtResource( 1 )
 acceleration = 0.25
 
@@ -89,3 +91,19 @@ bulletSpeed = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+
+[node name="Enemy1" parent="." instance=ExtResource( 4 )]
+position = Vector2( -200, -200 )
+rotation = -3.14159
+
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -100, -200 )
+rotation = 3.14159
+
+[node name="Enemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 100, -200 )
+rotation = 3.14159
+
+[node name="Enemy4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200, -200 )
+rotation = 3.14159

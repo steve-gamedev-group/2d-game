@@ -28,8 +28,6 @@ public class LaserWeapon : Node2D
 		RigidBody2D bullet = GD.Load<PackedScene>(bulletResourcePath).Instance<RigidBody2D>();
 		GetNode("../../").AddChild(bullet);
 
-		bullet.Position = GlobalPosition;
-		bullet.Rotation = GlobalRotation;
-		bullet.LinearVelocity = new Vector2(0, -bulletSpeed).Rotated(bullet.Rotation);
+		bullet.Call("Initialize", damage, GlobalPosition, GlobalRotation, bulletSpeed);
 	}
 }
