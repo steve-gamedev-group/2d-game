@@ -92,6 +92,7 @@ bulletSpeed = 200.0
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 script = ExtResource( 5 )
+targetNodePath = "/root/Node2D/Player/RigidBody2D"
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -200, -200 )

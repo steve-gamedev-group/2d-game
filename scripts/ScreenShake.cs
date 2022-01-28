@@ -3,7 +3,8 @@ using Godot;
 public class ScreenShake : Camera2D
 {
 	#region Variables
-	public Node2D target; // The node this camera will follow
+	[Export] public string targetNodePath; // The node this camera will follow
+	private Node2D target;
 
 	public float decay = 0.8f; // How quickly the shaking stops [0, 1]
 	public Vector2 maxOffset = new Vector2(100, 75); // Maximum horizontal/vertical shake in pixels
@@ -21,8 +22,7 @@ public class ScreenShake : Camera2D
 		noise.Period = 4;
 		noise.Octaves = 2;
 
-		target = GetNode<Node2D>("/root/Node2D/Player/RigidBody2D");
-		AddTrauma(0.5f);
+		target = GetNode<Node2D>(targetNodePath);
 	}
 
 	public override void _Process(float delta)
