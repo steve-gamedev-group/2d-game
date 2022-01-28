@@ -32,5 +32,6 @@ public class EnemyDummy : RigidBody2D
 	{
 		// Screenshake on death
 		GetNode("/root/Node2D/Player/Camera2D").Call("AddTrauma", 0.05f * lastHitAmount);
+		QueueFree();
 	}
 }

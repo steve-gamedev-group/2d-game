@@ -21,7 +21,8 @@ public class Bullet : RigidBody2D
 	{
 		if (body.IsInGroup("Damageable"))
 		{
-            body.Call("TakeDamage", damage);
+			body.Call("TakeDamage", damage);
+			QueueFree();
 		}
 	}
 }

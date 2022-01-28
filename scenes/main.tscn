@@ -72,25 +72,26 @@ texture = ExtResource( 3 )
 [node name="Laser weapon 1" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( -17.35, -25 )
 script = ExtResource( 2 )
-bulletSpeed = 200.0
+bulletSpeed = 750.0
 
 [node name="Laser weapon 2" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( -9.25, -32 )
 script = ExtResource( 2 )
-bulletSpeed = 200.0
+bulletSpeed = 750.0
 
 [node name="Laser weapon 3" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( 9.25, -32 )
 script = ExtResource( 2 )
-bulletSpeed = 200.0
+bulletSpeed = 750.0
 
 [node name="Laser weapon 4" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( 17.35, -25 )
 script = ExtResource( 2 )
-bulletSpeed = 200.0
+bulletSpeed = 750.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+zoom = Vector2( 2, 2 )
 script = ExtResource( 5 )
 targetNodePath = "/root/Node2D/Player/RigidBody2D"
 
