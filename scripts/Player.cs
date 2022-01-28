@@ -65,6 +65,6 @@ public class Player : RigidBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		GetNode<Label>("/root/Node2D/UI/Debug info").Text = $"Delta time: {delta}\n\nPosition: {Position}\nVelocity: {LinearVelocity}\nState: {playerState}";
+		GetNode<Label>("/root/Node2D/Player/Camera2D/UI/Debug info").Text = $"Delta time: {delta}\n\nPosition: {Position}\nVelocity: {LinearVelocity}\nState: {playerState}";
 	}
 }
