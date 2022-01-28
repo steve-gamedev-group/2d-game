@@ -19,6 +19,27 @@ gradient = SubResource( 4 )
 
 [node name="Node2D" type="Node2D"]
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Debug info" type="Label" parent="UI"]
+anchor_left = 0.02
+anchor_top = 0.03
+anchor_right = 0.2
+anchor_bottom = 0.11
+margin_left = -0.48
+margin_top = 2.0
+margin_right = -0.480026
+margin_bottom = 36.0
+text = "Delta time: 
+
+Position: 
+Velocity: 
+State: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" type="Node" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Player"]
@@ -71,28 +92,6 @@ bulletSpeed = 200.0
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 script = ExtResource( 5 )
-
-[node name="UI" type="CanvasLayer" parent="Player/Camera2D"]
-follow_viewport_enable = true
-
-[node name="Debug info" type="Label" parent="Player/Camera2D/UI"]
-anchor_left = 0.02
-anchor_top = 0.03
-anchor_right = 0.2
-anchor_bottom = 0.11
-margin_left = -513.0
-margin_top = -301.0
-margin_right = -513.0
-margin_bottom = -267.0
-text = "Delta time: 
-
-Position: 
-Velocity: 
-State: "
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -200, -200 )
