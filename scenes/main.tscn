@@ -72,22 +72,30 @@ texture = ExtResource( 3 )
 [node name="Laser weapon 1" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( -17.35, -25 )
 script = ExtResource( 2 )
+shootSpeed = 0.1
 bulletSpeed = 750.0
+bulletResourcePath = "res://prefabs/bullet.tscn"
 
 [node name="Laser weapon 2" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( -9.25, -32 )
 script = ExtResource( 2 )
+shootSpeed = 0.1
 bulletSpeed = 750.0
+bulletResourcePath = "res://prefabs/bullet.tscn"
 
 [node name="Laser weapon 3" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( 9.25, -32 )
 script = ExtResource( 2 )
+shootSpeed = 0.1
 bulletSpeed = 750.0
+bulletResourcePath = "res://prefabs/bullet.tscn"
 
 [node name="Laser weapon 4" type="Node2D" parent="Player/RigidBody2D"]
 position = Vector2( 17.35, -25 )
 script = ExtResource( 2 )
+shootSpeed = 0.1
 bulletSpeed = 750.0
+bulletResourcePath = "res://prefabs/bullet.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
