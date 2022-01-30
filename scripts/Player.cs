@@ -8,8 +8,8 @@ public class Player : RigidBody2D
 	[Export] public float maxVelocity = 250f;
 	[Export] public float zeroVelocityRange = 10f;
 
-	private Vector2 _thrust = new Vector2(0, -250);
-	private float _torque = 2500;
+	private Vector2 thrust = new Vector2(0, -250);
+	private float torque = 2500;
 
 	public Camera2D camera;
 
@@ -35,7 +35,7 @@ public class Player : RigidBody2D
 
 		if (Input.IsActionPressed("move_forward"))
 		{
-			AppliedForce = _thrust.Rotated(Rotation);
+			AppliedForce = thrust.Rotated(Rotation);
 			playerState = "moving forward";
 		}
 		else
@@ -53,12 +53,12 @@ public class Player : RigidBody2D
 			}
 		}
 
-		var rotationDir = 0;
-		if (Input.IsActionPressed("move_right"))
-			rotationDir += 1;
-		if (Input.IsActionPressed("move_left"))
-			rotationDir -= 1;
-		AppliedTorque = rotationDir * _torque;
+		// var rotationDir = 0;
+		// if (Input.IsActionPressed("move_right"))
+		// 	rotationDir += 1;
+		// if (Input.IsActionPressed("move_left"))
+		// 	rotationDir -= 1;
+		// AppliedTorque = rotationDir * torque;
 
 		LinearVelocity = LinearVelocity.Clamped(maxVelocity);
 	}
