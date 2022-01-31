@@ -3,6 +3,10 @@ using Godot;
 
 public class EnemyDummy : RigidBody2D
 {
+	[Export] public bool inventoryIntegration = false;
+	[Export] public int fuelDropAmount = 1;
+	[Export] public int metalDropAmount = 1;
+
 	public float health = 100f;
 
 	public void TakeDamage(float amount)
@@ -32,6 +36,13 @@ public class EnemyDummy : RigidBody2D
 	{
 		// Screenshake on death
 		GetNode("/root/Node2D/Player/Camera2D").Call("AddTrauma", 0.05f * lastHitAmount);
+
+		// Drop resources
+		if (inventoryIntegration)
+		{
+			GetNode("/root/Inventory").Call("SpawnResourceDrops", fuelDropAmount, metalDropAmount);
+		}
+
 		QueueFree();
 	}
 }
