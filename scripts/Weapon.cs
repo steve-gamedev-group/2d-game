@@ -1,12 +1,11 @@
-using System;
 using Godot;
 
-public class LaserWeapon : Node2D
+public class Weapon : Node2D
 {
 	[Export] public float damage = 10f;
 	[Export] public float shootSpeed = 0.25f;
 	[Export] public float bulletSpeed = 1f;
-	[Export] public string bulletResourcePath = "res://prefabs/laser_bullet.tscn";
+	[Export] public string bulletResourcePath = "res://";
 
 	private float timeUntilNextShot = 0;
 

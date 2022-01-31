@@ -72,10 +72,13 @@ texture = ExtResource( 3 )
 [node name="Laser weapon 1" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
 
 [node name="Laser weapon 2" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+position = Vector2( -9.35, -30.15 )
 
 [node name="Laser weapon 3" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+position = Vector2( 9.35, -30.15 )
 
 [node name="Laser weapon 4" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+position = Vector2( 17.35, -25 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
