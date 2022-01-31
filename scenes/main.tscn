@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
-[ext_resource path="res://scripts/LaserWeapon.cs" type="Script" id=2]
 [ext_resource path="res://resources/sprites/player.png" type="Texture" id=3]
 [ext_resource path="res://prefabs/enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/ScreenShake.cs" type="Script" id=5]
+[ext_resource path="res://prefabs/laser_weapon.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -69,38 +69,17 @@ rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
-[node name="Laser weapon 1" type="Node2D" parent="Player/RigidBody2D"]
-position = Vector2( -17.35, -25 )
-script = ExtResource( 2 )
-shootSpeed = 0.1
-bulletSpeed = 750.0
-bulletResourcePath = "res://prefabs/bullet.tscn"
+[node name="Laser weapon 1" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
 
-[node name="Laser weapon 2" type="Node2D" parent="Player/RigidBody2D"]
-position = Vector2( -9.25, -32 )
-script = ExtResource( 2 )
-shootSpeed = 0.1
-bulletSpeed = 750.0
-bulletResourcePath = "res://prefabs/bullet.tscn"
+[node name="Laser weapon 2" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
 
-[node name="Laser weapon 3" type="Node2D" parent="Player/RigidBody2D"]
-position = Vector2( 9.25, -32 )
-script = ExtResource( 2 )
-shootSpeed = 0.1
-bulletSpeed = 750.0
-bulletResourcePath = "res://prefabs/bullet.tscn"
+[node name="Laser weapon 3" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
 
-[node name="Laser weapon 4" type="Node2D" parent="Player/RigidBody2D"]
-position = Vector2( 17.35, -25 )
-script = ExtResource( 2 )
-shootSpeed = 0.1
-bulletSpeed = 750.0
-bulletResourcePath = "res://prefabs/bullet.tscn"
+[node name="Laser weapon 4" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 script = ExtResource( 5 )
-targetNodePath = "/root/Node2D/Player/RigidBody2D"
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -200, -200 )
