@@ -14,6 +14,10 @@ config/name="2d-game"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+InventoryManager="*res://prefabs/autoload/inventory_manager.tscn"
+
 [input]
 
 move_forward={

@@ -1,18 +1,23 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public class EnemyDummy : RigidBody2D
 {
-	[Export] public bool inventoryIntegration = false;
-	[Export] public int fuelDropAmount = 1;
-	[Export] public int metalDropAmount = 1;
+	[Export] public float health = 100f;
 
-	public float health = 100f;
+	[Export] public bool inventoryIntegration = false;
+	[Export]
+	// Resource type ((int)ResourceTypes.x), amount to drop (int) 
+	public Dictionary<int, int> resourceDrops = new Dictionary<int, int>()
+	{
+		{ (int)InventoryManager.ResourceTypes.Fuel, 1 },
+		{ (int)InventoryManager.ResourceTypes.Metal, 1 }
+	};
 
 	public void TakeDamage(float amount)
 	{
 		health -= amount;
-		GD.Print(health);
 
 		if (health <= 0f)
 		{
@@ -40,7 +45,7 @@ public class EnemyDummy : RigidBody2D
 		// Drop resources
 		if (inventoryIntegration)
 		{
-			GetNode("/root/Inventory").Call("SpawnResourceDrops", fuelDropAmount, metalDropAmount);
+			GetNode("/root/InventoryManager").Call("SpawnResourceDrops", GlobalPosition, GlobalRotation, resourceDrops);
 		}
 
 		QueueFree();

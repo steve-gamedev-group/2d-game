@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class Player : RigidBody2D
@@ -65,6 +67,21 @@ public class Player : RigidBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		GetNode<Label>("/root/Node2D/UI/Debug info").Text = $"Delta time: {delta}\n\nPosition: {Position}\nVelocity: {LinearVelocity}\nState: {playerState}";
+		Node inventoryManager = GetNode("/root/InventoryManager");
+		string[] resourceTypeNames = Enum.GetNames(typeof(InventoryManager.ResourceTypes));
+		string storedResourcesString = "";
+
+		for (int i = 0; i < resourceTypeNames.Length; i++)
+		{
+			object dictionaryObject = inventoryManager.Get("storedResources");
+			Dictionary<string, object> storedResources = dictionaryObject.GetType().GetProperties().ToDictionary(property => property.Name, property => property.GetValue(dictionaryObject));
+			storedResourcesString += $"\n {resourceTypeNames[i]}: {storedResources[i.ToString()].ToString()}";
+		}
+
+		GetNode<Label>("/root/Node2D/UI/Debug info").Text =
+		$"Delta time: {delta}"
+		+ $"\n\nPosition: {Position}\nVelocity: {LinearVelocity}\nState: {playerState}"
+		+ $"\n\nInventory"
+		+ storedResourcesString;
 	}
 }

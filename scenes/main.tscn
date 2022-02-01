@@ -34,50 +34,53 @@ text = "Delta time:
 
 Position: 
 Velocity: 
-State: "
+State: 
+
+Inventory
+Type: amount"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" type="Node" parent="."]
+[node name="Player" type="Node" parent="." groups=["Player"]]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Player"]
+[node name="RigidBody2D" type="RigidBody2D" parent="Player" groups=["Player"]]
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource( 1 )
 acceleration = 0.25
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RigidBody2D" groups=["Player"]]
 shape = SubResource( 1 )
 
-[node name="Top circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
+[node name="Top circle" type="MeshInstance2D" parent="Player/RigidBody2D" groups=["Player"]]
 visible = false
 position = Vector2( 0, -10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
 texture = SubResource( 5 )
 
-[node name="Bottom circle" type="MeshInstance2D" parent="Player/RigidBody2D"]
+[node name="Bottom circle" type="MeshInstance2D" parent="Player/RigidBody2D" groups=["Player"]]
 visible = false
 position = Vector2( 0, 10 )
 scale = Vector2( 10, 10 )
 mesh = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="Player/RigidBody2D"]
+[node name="Sprite" type="Sprite" parent="Player/RigidBody2D" groups=["Player"]]
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
-[node name="Laser weapon 1" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+[node name="Laser weapon 1" parent="Player/RigidBody2D" groups=["Player"] instance=ExtResource( 6 )]
 
-[node name="Laser weapon 2" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+[node name="Laser weapon 2" parent="Player/RigidBody2D" groups=["Player"] instance=ExtResource( 6 )]
 position = Vector2( -9.35, -30.15 )
 
-[node name="Laser weapon 3" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+[node name="Laser weapon 3" parent="Player/RigidBody2D" groups=["Player"] instance=ExtResource( 6 )]
 position = Vector2( 9.35, -30.15 )
 
-[node name="Laser weapon 4" parent="Player/RigidBody2D" instance=ExtResource( 6 )]
+[node name="Laser weapon 4" parent="Player/RigidBody2D" groups=["Player"] instance=ExtResource( 6 )]
 position = Vector2( 17.35, -25 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -88,15 +91,35 @@ targetNodePath = "/root/Node2D/Player/RigidBody2D"
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -200, -200 )
 rotation = -3.14159
+inventoryIntegration = true
+resourceDrops = {
+0: 5,
+1: 0
+}
 
 [node name="Enemy2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -100, -200 )
 rotation = 3.14159
+inventoryIntegration = true
+resourceDrops = {
+0: 5,
+1: 0
+}
 
 [node name="Enemy3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 100, -200 )
 rotation = 3.14159
+inventoryIntegration = true
+resourceDrops = {
+0: 5,
+1: 0
+}
 
 [node name="Enemy4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, -200 )
 rotation = 3.14159
+inventoryIntegration = true
+resourceDrops = {
+0: 5,
+1: 0
+}
