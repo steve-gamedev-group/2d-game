@@ -1,23 +1,39 @@
 using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+/// Singleton (autoload in Godot), data persists with scene changes.
+/// </summary>
 public class InventoryManager : Node
 {
+	#region Variables
+	public static InventoryManager instance;
+
+	[Export] public string droppedResourcePrefabPath = "res://";
+
 	public enum ResourceTypes
 	{
 		Fuel = 0,
 		Metal,
 	}
 
-	[Export] public string droppedResourcePrefabPath = "res://";
-
-	[Export]
 	// Resource type ((int)ResourceTypes.x), amount stored in inventory (int) 
 	public Dictionary<int, int> storedResources = new Dictionary<int, int>()
 	{
 		{ (int)ResourceTypes.Fuel, 0 },
 		{ (int)ResourceTypes.Metal, 0 }
 	};
+	#endregion
+
+	public override void _Ready()
+	{
+		// C# singleton instance initializer for strong typing support
+		if (instance != null)
+		{
+			GD.Print("InventoryManager instance was already set, overriding.");
+		}
+		instance = this;
+	}
 
 	public void SpawnResourceDrops(Vector2 globalPosition, float globalRotation, Dictionary<int, int> resourceDrops)
 	{

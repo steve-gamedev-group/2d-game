@@ -73,9 +73,8 @@ public class Player : RigidBody2D
 
 		for (int i = 0; i < resourceTypeNames.Length; i++)
 		{
-			object dictionaryObject = inventoryManager.Get("storedResources");
-			Dictionary<string, object> storedResources = dictionaryObject.GetType().GetProperties().ToDictionary(property => property.Name, property => property.GetValue(dictionaryObject));
-			storedResourcesString += $"\n {resourceTypeNames[i]}: {storedResources[i.ToString()].ToString()}";
+			Dictionary<int, int> storedResources = InventoryManager.instance.storedResources;
+			storedResourcesString += $"\n{resourceTypeNames[i]}: {storedResources[i].ToString()}";
 		}
 
 		GetNode<Label>("/root/Node2D/UI/Debug info").Text =
