@@ -11,6 +11,7 @@ public class InventoryManager : Node
 
 	[Export] public string droppedResourcePrefabPath = "res://";
 
+	// TODO: Make storedResources dictionary dynamic
 	public enum ResourceTypes
 	{
 		Fuel = 0,

@@ -19,6 +19,7 @@ public class DroppedResource : Sprite
 
 	public InventoryManager.ResourceTypes resourceType;
 
+	// TODO: Make resourceTypeToSpritePath dynamic
 	private readonly Dictionary<int, string> resourceTypeToSpritePath = new Dictionary<int, string>()
 	{
 		{ (int)InventoryManager.ResourceTypes.Fuel, "res://resources/sprites/fuel.png" },
