@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 public class Player : RigidBody2D
@@ -10,12 +9,9 @@ public class Player : RigidBody2D
 	[Export] public float maxVelocity = 250f;
 	[Export] public float zeroVelocityRange = 10f;
 
-	private Vector2 thrust = new Vector2(0, -250);
-	private float torque = 2500;
-
 	public Camera2D camera;
 
-	private Vector2 direction = Vector2.Zero;
+	private Vector2 thrust = new Vector2(0, -250);
 	private string playerState = "stopped";
 
 	public override void _Ready()
@@ -67,14 +63,13 @@ public class Player : RigidBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		Node inventoryManager = GetNode("/root/InventoryManager");
 		string[] resourceTypeNames = Enum.GetNames(typeof(InventoryManager.ResourceTypes));
 		string storedResourcesString = "";
 
 		for (int i = 0; i < resourceTypeNames.Length; i++)
 		{
 			Dictionary<int, int> storedResources = InventoryManager.instance.storedResources;
-			storedResourcesString += $"\n{resourceTypeNames[i]}: {storedResources[i].ToString()}";
+			storedResourcesString += $"\n{resourceTypeNames[i]}: {storedResources[i]}";
 		}
 
 		GetNode<Label>("/root/Node2D/UI/Debug info").Text =
