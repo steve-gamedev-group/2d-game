@@ -8,6 +8,34 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "EditorPlugin",
+"class": "GodotSfxr",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/GodotSfxr.gd"
+}, {
+"base": "Object",
+"class": "SfxrGenerator",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/SfxrGenerator.gd"
+}, {
+"base": "Object",
+"class": "SfxrGlobals",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/SfxrGlobals.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "SfxrStreamPlayer",
+"language": "GDScript",
+"path": "res://addons/godot_sfxr/SfxrStreamPlayer.gd"
+} ]
+_global_script_class_icons={
+"GodotSfxr": "",
+"SfxrGenerator": "",
+"SfxrGlobals": "",
+"SfxrStreamPlayer": ""
+}
+
 [application]
 
 config/name="2d-game"
@@ -17,6 +45,10 @@ config/icon="res://icon.png"
 [autoload]
 
 InventoryManager="*res://prefabs/autoload/inventory_manager.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot_sfxr/plugin.cfg" )
 
 [input]
 
