@@ -1,0 +1,173 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/animationplayer_spriteframes_helper/ash_inspector/ash_inspector.gd" type="Script" id=1]
+[ext_resource path="res://addons/animationplayer_spriteframes_helper/ash_spriteframes_view/ash_spriteframes_view.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.25098, 0.270588, 0.32549, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="Inspector" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+refresh_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/RefreshButton")
+assigned_animation_option_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Panel/CenterContainer/HBoxContainer/MarginContainer/AssignedAnimationOptionButton")
+option_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionButtonContainer/AnimatedSpriteOptionButton")
+current_animation_preview = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/SpriteFrameAnimationControlEntry")
+option_button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionButtonContainer")
+insert_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer/InsertButton")
+fill_toggle = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer/GridContainer/FillToggle")
+insert_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer")
+set_animation_length_toggle = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer/GridContainer/SetAnimationLengthToggle")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 300.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 300.0
+margin_bottom = 600.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 295.0
+margin_bottom = 595.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 290.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 20 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel"]
+margin_right = 290.0
+margin_bottom = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/CenterContainer"]
+margin_left = 95.0
+margin_right = 194.0
+margin_bottom = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Assigned Animation Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/CenterContainer/HBoxContainer"]
+margin_top = 8.0
+margin_right = 66.0
+margin_bottom = 22.0
+text = "Animation"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/CenterContainer/HBoxContainer"]
+margin_left = 70.0
+margin_right = 99.0
+margin_bottom = 30.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="AssignedAnimationOptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/CenterContainer/HBoxContainer/MarginContainer"]
+margin_top = 5.0
+margin_right = 29.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="RefreshButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 34.0
+margin_right = 290.0
+margin_bottom = 54.0
+text = "Refresh"
+
+[node name="OptionButtonContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 290.0
+margin_bottom = 278.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/OptionButtonContainer"]
+margin_right = 99.0
+margin_bottom = 244.0
+size_flags_vertical = 3
+text = "AnimatedSprite"
+align = 1
+valign = 1
+
+[node name="AnimatedSpriteOptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/OptionButtonContainer"]
+margin_left = 103.0
+margin_right = 290.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 282.0
+margin_right = 290.0
+margin_bottom = 590.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+margin_right = 290.0
+margin_bottom = 308.0
+
+[node name="SpriteFrameAnimationControlEntry" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 290.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 0, 256 )
+
+[node name="InsertContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 260.0
+margin_right = 290.0
+margin_bottom = 308.0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer"]
+margin_right = 290.0
+margin_bottom = 24.0
+columns = 4
+
+[node name="FillToggle" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer/GridContainer"]
+margin_right = 47.0
+margin_bottom = 24.0
+text = "Fill"
+
+[node name="SetAnimationLengthToggle" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer/GridContainer"]
+margin_left = 51.0
+margin_right = 146.0
+margin_bottom = 24.0
+text = "Set Length"
+
+[node name="InsertButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InsertContainer"]
+margin_top = 28.0
+margin_right = 290.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+text = "Insert"
+__meta__ = {
+"_edit_use_anchors_": false
+}
