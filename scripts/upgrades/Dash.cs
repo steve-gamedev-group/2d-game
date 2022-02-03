@@ -4,24 +4,21 @@ using SteveExtensionMethods;
 
 public class Dash : Node
 {
-	[Export] public Curve speedCurve = new Curve();
+	[Export] public float duration = 1f;
+	[Export] public float speedMultiplier = 100f;
+	[Export] public Curve speedCurve;
 
 	public bool isDashing { get; private set; } = false;
 
 	private Node localPlayer;
 	private RigidBody2D localPlayerRb2D;
 
-	private int currentDashFrame = 0;
+	private float currentDuration = 0f;
 
 	public override void _Ready()
 	{
 		localPlayer = GetNode<Node>("/root/Node2D/Player");
 		localPlayerRb2D = localPlayer.GetNode<RigidBody2D>("./RigidBody2D");
-
-		// speedCurve.AddPoint(new Vector2(0f, 0f), 0f, 0.5f);
-		// speedCurve.AddPoint(new Vector2(1f, 1000f), 0.5f, 0f);
-		speedCurve.BakeResolution = Engine.IterationsPerSecond;
-		speedCurve.Bake();
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -33,14 +30,14 @@ public class Dash : Node
 
 		if (isDashing)
 		{
-			DashProcess();
+			DashProcess(delta);
 		}
 	}
 
 	public void StartDash()
 	{
 		isDashing = true;
-		currentDashFrame = 0;
+		currentDuration = 0f;
 	}
 
 	public void StopDash()
@@ -48,9 +45,9 @@ public class Dash : Node
 		isDashing = false;
 	}
 
-	private void DashProcess()
+	private void DashProcess(float delta)
 	{
-		if (currentDashFrame >= speedCurve.BakeResolution)
+		if (currentDuration > duration)
 		{
 			StopDash();
 			return;
@@ -58,8 +55,8 @@ public class Dash : Node
 
 		GD.Print(speedCurve.GetPointCount());
 
-		localPlayerRb2D.AppliedForce += new Vector2(0f, speedCurve.GetPointPosition(currentDashFrame).y * 1000f).
+		localPlayerRb2D.AppliedForce += new Vector2(0f, speedCurve.Interpolate(currentDuration) * speedMultiplier).
 			Rotated(localPlayerRb2D.Rotation + 180f.DegToRad());
-		currentDashFrame += 1;
+		currentDuration += delta;
 	}
 }

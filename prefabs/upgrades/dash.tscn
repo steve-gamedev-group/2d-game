@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/upgrades/Dash.cs" type="Script" id=1]
 
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 12.1136, 0, 0, Vector2( 0.2, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.9394, 0.0, 0, 0 ]
+
 [node name="DashUpgrade" type="Node"]
 script = ExtResource( 1 )
+speedMultiplier = 10000.0
+speedCurve = SubResource( 1 )

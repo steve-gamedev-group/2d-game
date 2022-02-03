@@ -17,6 +17,8 @@ public class Player : RigidBody2D
 	public override void _Ready()
 	{
 		camera = GetNode<Camera2D>("../Camera2D");
+
+		Engine.TargetFps = 120;
 	}
 
 	public override void _Process(float delta)
