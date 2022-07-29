@@ -1,2 +1,2 @@
-# 2d-game
-Our first 2D game, made with Godot (C#).
+# 2d-game  
+Some kind of twin stick shooter, I think. Made with Godot (C#).
