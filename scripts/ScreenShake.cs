@@ -39,10 +39,7 @@ public class ScreenShake : Camera2D
 		}
 	}
 
-	public void AddTrauma(float traumaToAdd)
-	{
-		trauma =+ traumaToAdd;
-	}
+	public void AddTrauma(float traumaToAdd) => trauma =+ traumaToAdd;
 
 	private void Shake()
 	{
