@@ -40,10 +40,7 @@ public class Dash : Node
 		currentDuration = 0f;
 	}
 
-	public void StopDash()
-	{
-		isDashing = false;
-	}
+	public void StopDash() => isDashing = false;
 
 	private void DashProcess(float delta)
 	{
