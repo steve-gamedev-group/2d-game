@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 namespace Game.Utils;
 
 public static class SteveMathExtensionMethods
