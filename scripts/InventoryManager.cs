@@ -8,7 +8,7 @@ public class InventoryManager : Node
 	#region Variables
 	public static InventoryManager instance;
 
-	[Export] public string DroppedResourcePrefabPath = "res://";
+	[Export] public string droppedResourcePrefabPath = "res://";
 
 	// TODO: Make storedResources dictionary dynamic
 	public enum ResourceTypes
@@ -18,7 +18,7 @@ public class InventoryManager : Node
 	}
 
 	// Resource type ((int)ResourceTypes.x), amount stored in inventory (int) 
-	public Dictionary<int, int> StoredResources = new Dictionary<int, int>()
+	public Dictionary<int, int> storedResources = new Dictionary<int, int>()
 	{
 		{ (int)ResourceTypes.Fuel, 0 },
 		{ (int)ResourceTypes.Metal, 0 }
@@ -50,7 +50,7 @@ public class InventoryManager : Node
 		{
 			for (int i = 0; i < resourceDrops[currentKey]; i++)
 			{
-				Sprite spawnedResource = GD.Load<PackedScene>(DroppedResourcePrefabPath).Instance<Sprite>();
+				Sprite spawnedResource = GD.Load<PackedScene>(droppedResourcePrefabPath).Instance<Sprite>();
 				GetNode("/root/Node2D").CallDeferred("add_child", spawnedResource);
 
 				spawnedResource.Call("Initialize", globalPosition, globalRotation, currentKey);
@@ -60,7 +60,7 @@ public class InventoryManager : Node
 
 	public void IncreaseStoredResource(ResourceTypes resourceType, int amount)
 	{
-		StoredResources[(int)resourceType] += amount;
+		storedResources[(int)resourceType] += amount;
 
 		// Play effect here
 	}

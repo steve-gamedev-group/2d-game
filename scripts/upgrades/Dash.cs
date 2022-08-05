@@ -4,11 +4,11 @@ namespace Game;
 
 public class Dash : Node
 {
-	[Export] public float Duration = 1f;
-	[Export] public float SpeedMultiplier = 100f;
-	[Export] public Curve SpeedCurve;
+	[Export] public float duration = 1f;
+	[Export] public float speedMultiplier = 100f;
+	[Export] public Curve speedCurve;
 
-	public bool IsDashing { get; private set; } = false;
+	public bool isDashing { get; private set; } = false;
 
 	private Node localPlayer;
 	private RigidBody2D localPlayerRb2D;
@@ -28,7 +28,7 @@ public class Dash : Node
 			StartDash();
 		}
 
-		if (IsDashing)
+		if (isDashing)
 		{
 			DashProcess(delta);
 		}
@@ -36,23 +36,23 @@ public class Dash : Node
 
 	public void StartDash()
 	{
-		IsDashing = true;
+		isDashing = true;
 		currentDuration = 0f;
 	}
 
-	public void StopDash() => IsDashing = false;
+	public void StopDash() => isDashing = false;
 
 	private void DashProcess(float delta)
 	{
-		if (currentDuration > Duration)
+		if (currentDuration > duration)
 		{
 			StopDash();
 			return;
 		}
 
-		GD.Print(SpeedCurve.GetPointCount());
+		GD.Print(speedCurve.GetPointCount());
 
-		localPlayerRb2D.AppliedForce += new Vector2(0f, SpeedCurve.Interpolate(currentDuration) * SpeedMultiplier).
+		localPlayerRb2D.AppliedForce += new Vector2(0f, speedCurve.Interpolate(currentDuration) * speedMultiplier).
 			Rotated(localPlayerRb2D.Rotation + 180f.DegToRad());
 		currentDuration += delta;
 	}

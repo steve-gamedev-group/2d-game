@@ -2,10 +2,10 @@ namespace Game;
 
 public class Weapon : Node2D
 {
-	[Export] public float Damage = 10f;
-	[Export] public float ShootSpeed = 0.25f;
-	[Export] public float BulletSpeed = 1f;
-	[Export] public string BulletResourcePath = "res://";
+	[Export] public float damage = 10f;
+	[Export] public float shootSpeed = 0.25f;
+	[Export] public float bulletSpeed = 1f;
+	[Export] public string bulletResourcePath = "res://";
 
 	private float timeUntilNextShot = 0;
 
@@ -14,7 +14,7 @@ public class Weapon : Node2D
 		if (Input.IsActionPressed("shoot") && timeUntilNextShot <= 0)
 		{
 			Shoot();
-			timeUntilNextShot = ShootSpeed;
+			timeUntilNextShot = shootSpeed;
 		}
 
 		timeUntilNextShot -= delta;
@@ -24,9 +24,9 @@ public class Weapon : Node2D
 
 	public void Shoot()
 	{
-		RigidBody2D bullet = GD.Load<PackedScene>(BulletResourcePath).Instance<RigidBody2D>();
+		RigidBody2D bullet = GD.Load<PackedScene>(bulletResourcePath).Instance<RigidBody2D>();
 		GetNode("../../").AddChild(bullet);
 
-		bullet.Call("Initialize", Damage, GlobalPosition, GlobalRotation, BulletSpeed);
+		bullet.Call("Initialize", damage, GlobalPosition, GlobalRotation, bulletSpeed);
 	}
 }

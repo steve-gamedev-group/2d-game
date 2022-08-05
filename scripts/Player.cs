@@ -6,19 +6,19 @@ namespace Game;
 
 public class Player : RigidBody2D
 {
-	[Export] public float Acceleration = 0.5f;
-	[Export] public float Deceleration = 2f;
-	[Export] public float MaxVelocity = 250f;
-	[Export] public float ZeroVelocityRange = 10f;
+	[Export] public float acceleration = 0.5f;
+	[Export] public float deceleration = 2f;
+	[Export] public float maxVelocity = 250f;
+	[Export] public float zeroVelocityRange = 10f;
 
-	public Camera2D Camera;
+	public Camera2D camera;
 
 	private Vector2 thrust = new Vector2(0, -250);
 	private string playerState = "stopped";
 
 	public override void _Ready()
 	{
-		Camera = GetNode<Camera2D>("../Camera2D");
+		camera = GetNode<Camera2D>("../Camera2D");
 
 		Engine.TargetFps = 120;
 	}
@@ -45,11 +45,11 @@ public class Player : RigidBody2D
 			AppliedForce = new Vector2();
 			playerState = "slowing down";
 
-			if (LinearVelocity.Abs().x <= ZeroVelocityRange)
+			if (LinearVelocity.Abs().x <= zeroVelocityRange)
 			{
 				LinearVelocity = new Vector2(0, LinearVelocity.y);
 			}
-			if (LinearVelocity.Abs().y <= ZeroVelocityRange)
+			if (LinearVelocity.Abs().y <= zeroVelocityRange)
 			{
 				LinearVelocity = new Vector2(LinearVelocity.x, 0);
 			}
@@ -62,7 +62,7 @@ public class Player : RigidBody2D
 		// 	rotationDir -= 1;
 		// AppliedTorque = rotationDir * torque;
 
-		LinearVelocity = LinearVelocity.Clamped(MaxVelocity);
+		LinearVelocity = LinearVelocity.Clamped(maxVelocity);
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -72,7 +72,7 @@ public class Player : RigidBody2D
 
 		for (int i = 0; i < resourceTypeNames.Length; i++)
 		{
-			Dictionary<int, int> storedResources = InventoryManager.instance.StoredResources;
+			Dictionary<int, int> storedResources = InventoryManager.instance.storedResources;
 			storedResourcesString += $"\n{resourceTypeNames[i]}: {storedResources[i]}";
 		}
 

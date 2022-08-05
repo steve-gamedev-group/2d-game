@@ -3,12 +3,12 @@ namespace Game;
 public class ScreenShake : Camera2D
 {
 	#region Variables
-	[Export] public string TargetNodePath; // The node this camera will follow
+	[Export] public string targetNodePath; // The node this camera will follow
 	private Node2D target;
 
-	public float Decay = 0.8f; // How quickly the shaking stops [0, 1]
-	public Vector2 MaxOffset = new Vector2(100, 75); // Maximum horizontal/vertical shake in pixels
-	public float MaxRoll = 0.1f; // Maximum rotation in radians (use sparingly)
+	public float decay = 0.8f; // How quickly the shaking stops [0, 1]
+	public Vector2 maxOffset = new Vector2(100, 75); // Maximum horizontal/vertical shake in pixels
+	public float maxRoll = 0.1f; // Maximum rotation in radians (use sparingly)
 
 	private OpenSimplexNoise noise = new OpenSimplexNoise();
 	private float noiseY = 0f;
@@ -22,7 +22,7 @@ public class ScreenShake : Camera2D
 		noise.Period = 4;
 		noise.Octaves = 2;
 
-		target = GetNode<Node2D>(TargetNodePath);
+		target = GetNode<Node2D>(targetNodePath);
 	}
 
 	public override void _Process(float delta)
@@ -34,7 +34,7 @@ public class ScreenShake : Camera2D
 
 		if (!Mathf.IsEqualApprox(trauma, 0f))
 		{
-			trauma = Mathf.Max(trauma - Decay * delta, 0);
+			trauma = Mathf.Max(trauma - decay * delta, 0);
 			Shake();
 		}
 	}
@@ -45,8 +45,8 @@ public class ScreenShake : Camera2D
 	{
 		float amount = Mathf.Pow(trauma, traumaPower);
 
-		Rotation = MaxRoll * amount * (float)GD.RandRange(-1, 1);
-		Offset = new Vector2(MaxOffset.x * amount * (float)GD.RandRange(-1, 1), Offset.y);
-		Offset = new Vector2(Offset.x, MaxOffset.y * amount * (float)GD.RandRange(-1, 1));
+		Rotation = maxRoll * amount * (float)GD.RandRange(-1, 1);
+		Offset = new Vector2(maxOffset.x * amount * (float)GD.RandRange(-1, 1), Offset.y);
+		Offset = new Vector2(Offset.x, maxOffset.y * amount * (float)GD.RandRange(-1, 1));
 	}
 }

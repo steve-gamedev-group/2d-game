@@ -2,12 +2,12 @@ namespace Game;
 
 public class EnemyDummy : RigidBody2D
 {
-	[Export] public float Health = 100f;
+	[Export] public float health = 100f;
 
-	[Export] public bool InventoryIntegration = false;
+	[Export] public bool inventoryIntegration = false;
 	[Export]
 	// Resource type ((int)ResourceTypes.x), amount to drop (int) 
-	public Dictionary<int, int> ResourceDrops = new Dictionary<int, int>()
+	public Dictionary<int, int> resourceDrops = new Dictionary<int, int>()
 	{
 		{ (int)InventoryManager.ResourceTypes.Fuel, 1 },
 		{ (int)InventoryManager.ResourceTypes.Metal, 1 }
@@ -15,9 +15,9 @@ public class EnemyDummy : RigidBody2D
 
 	public void TakeDamage(float amount)
 	{
-		Health -= amount;
+		health -= amount;
 
-		if (Health <= 0f)
+		if (health <= 0f)
 		{
 			Die(amount);
 		}
@@ -30,7 +30,7 @@ public class EnemyDummy : RigidBody2D
 
 	public void Heal(float amount)
 	{
-		Health += amount;
+		health += amount;
 
 		// Play effect here
 	}
@@ -41,9 +41,9 @@ public class EnemyDummy : RigidBody2D
 		GetNode("/root/Node2D/Player/Camera2D").Call("AddTrauma", 0.05f * lastHitAmount);
 
 		// Drop resources
-		if (InventoryIntegration)
+		if (inventoryIntegration)
 		{
-			GetNode("/root/InventoryManager").Call("SpawnResourceDrops", GlobalPosition, GlobalRotation, ResourceDrops);
+			GetNode("/root/InventoryManager").Call("SpawnResourceDrops", GlobalPosition, GlobalRotation, resourceDrops);
 		}
 
 		QueueFree();
