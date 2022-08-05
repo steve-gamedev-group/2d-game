@@ -1,6 +1,6 @@
-using System;
-using System.Collections.Generic;
-using Godot;
+global using System;
+global using System.Collections.Generic;
+global using Godot;
 
 namespace Game;
 
