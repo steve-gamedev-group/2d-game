@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Game;
+
 public class Weapon : Node2D
 {
 	[Export] public float damage = 10f;

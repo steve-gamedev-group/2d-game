@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
+namespace Game;
+
 public class Player : RigidBody2D
 {
 	[Export] public float acceleration = 0.5f;

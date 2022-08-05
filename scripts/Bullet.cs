@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Game;
+
 public class Bullet : RigidBody2D
 {
 	private float damage;

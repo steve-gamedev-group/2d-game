@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Godot;
 
+namespace Game;
+
 /// <summary>
 /// Requires inventory integration.
 /// </summary>
