@@ -10,13 +10,13 @@ public class DroppedResource : Sprite
 	/// <summary>
 	/// The range of randomness allowed to be added to resource drops' positions.
 	/// </summary>
-	[Export] public double randomisedPositionRange = 10;
+	[Export] public double RandomisedPositionRange = 10;
 	/// <summary>
 	/// The range of randomness allowed to be added to resource drops' rotations, in radians.
 	/// </summary>
-	[Export] public double randomisedRotationRangeDegrees = 10;
+	[Export] public double RandomisedRotationRangeDegrees = 10;
 
-	public InventoryManager.ResourceTypes resourceType;
+	public InventoryManager.ResourceTypes ResourceType;
 
 	// TODO: Make resourceTypeToSpritePath dynamic
 	private readonly Dictionary<int, string> resourceTypeToSpritePath = new Dictionary<int, string>()
@@ -42,19 +42,19 @@ public class DroppedResource : Sprite
 	public void Initialize(Vector2 newGlobalPosition, float newGlobalRotation, int newResourceType)
 	{
 		GlobalPosition = newGlobalPosition + new Vector2(
-			(float)GD.RandRange(-randomisedPositionRange, randomisedPositionRange),
-			(float)GD.RandRange(-randomisedPositionRange, randomisedPositionRange));
+			(float)GD.RandRange(-RandomisedPositionRange, RandomisedPositionRange),
+			(float)GD.RandRange(-RandomisedPositionRange, RandomisedPositionRange));
 		GlobalRotation = newGlobalRotation +
-			(float)GD.RandRange(-randomisedRotationRangeDegrees, randomisedRotationRangeDegrees)
+			(float)GD.RandRange(-RandomisedRotationRangeDegrees, RandomisedRotationRangeDegrees)
 			* (Mathf.Pi / 180);
 
-		resourceType = (InventoryManager.ResourceTypes)newResourceType;
+		ResourceType = (InventoryManager.ResourceTypes)newResourceType;
 		Texture = GD.Load<Texture>(resourceTypeToSpritePath[newResourceType]);
 	}
 
 	public void PickUp()
 	{
-		GetNode("/root/InventoryManager").Call("IncreaseStoredResource", resourceType, 1);
+		GetNode("/root/InventoryManager").Call("IncreaseStoredResource", ResourceType, 1);
 		QueueFree();
 	}
 }
