@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 namespace Game;
 
 public class UpgradeManager : Node

@@ -1,5 +1,3 @@
-using System;
-using Godot;
 using Game.Utils;
 
 namespace Game;
