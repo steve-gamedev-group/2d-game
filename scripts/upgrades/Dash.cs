@@ -1,6 +1,6 @@
-using System;
-using Godot;
-using SteveExtensionMethods;
+using Game.Utils;
+
+namespace Game;
 
 public class Dash : Node
 {

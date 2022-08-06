@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using Godot;
+namespace Game;
 
 /// <summary>
 /// Singleton (autoload in Godot), data persists with scene changes.

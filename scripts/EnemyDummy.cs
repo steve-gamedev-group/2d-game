@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Godot;
+namespace Game;
 
 public class EnemyDummy : RigidBody2D
 {
